@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background3"
+    tools:context=".instructor_page">
+
+
+    <Button
+        android:id="@+id/bt_myclass"
+        android:layout_width="140dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:text="AVAILABLE COURSES"
+        app:layout_constraintEnd_toStartOf="@+id/bt_backtomain"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_Search" />
+
+    <Button
+        android:id="@+id/bt_backtomain"
+        android:layout_width="142dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="44dp"
+        android:text="       Menu       "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_Search" />
+
+    <EditText
+        android:id="@+id/ET_Search"
+        android:layout_width="209dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="68dp"
+        android:drawableLeft="@drawable/ic_search_icon"
+        android:ems="10"
+        android:hint="Search for Course"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#918E8E"
+        app:layout_constraintEnd_toStartOf="@+id/bt_search"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/LT_instructor"
+        android:layout_width="303dp"
+        android:layout_height="439dp"
+        android:layout_marginTop="34dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_myclass"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click the course in list below to modify it"
+        android:textColor="#161517"
+        app:layout_constraintBottom_toTopOf="@+id/LT_instructor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_Search"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <Button
+        android:id="@+id/bt_search"
+        android:layout_width="46dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="76dp"
+        android:background="#C317FFFF"
+        android:backgroundTint="@color/cardview_light_background"
+        android:drawableLeft="@drawable/ic_search_icon"
+        android:textColor="@color/black"
+        android:shadowColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.764" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

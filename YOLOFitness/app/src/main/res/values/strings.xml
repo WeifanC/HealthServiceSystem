@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">YOLOFitness</string>
+    <string name="ClassName">Class Name</string>
+    <string name="ClassDescription">Class Description</string>
+    <string name="add">ADD</string>
+    <string name="viewall">viewall</string>
+    <string name="class_name">Class Name</string>
+    <string name="description">description</string>
+    <string name="welcome">Welcome</string>
+    <string name="user_id">UserID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="Instructor">Instructor</string>
+    <string name="Member">Member</string>
+    <string name="sign_up">Sign Up</string>
+
+    // sign_up page
+    <string name="account">Account</string>
+    <string name="identity">Student or Instructor?</string>
+    <string name="confirm">Confirm</string>>
+</resources>
