@@ -13,7 +13,7 @@ import java.util.TimerTask;
 public class Displaypage extends AppCompatActivity {
     public String ID,identity;
     public TextView msg_welcome;
-    public Button bt_member, bt_instructor;
+
     Timer timer;
 
 
@@ -36,7 +36,7 @@ public class Displaypage extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (identity.equals("Instructor")){
+                if (identity.equals("employee")){    /**修改*/
                     Intent intent = new Intent(Displaypage.this,instructor_page.class);
                     intent.putExtras(finalBundle);
                     startActivity(intent);

@@ -63,7 +63,7 @@
         android:checked="false"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:text="Instructor?"
+        android:text="employee?"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="15dp"

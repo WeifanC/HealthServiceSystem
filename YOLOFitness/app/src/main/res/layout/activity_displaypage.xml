@@ -11,7 +11,7 @@
         android:id="@+id/textView2"
         android:layout_width="250dp"
         android:layout_height="300dp"
-        android:text="Welcome, User You are now successfully sign in as student/instructor"
+        android:text="Welcome, User You are now successfully sign in as employee/patient"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="36sp"

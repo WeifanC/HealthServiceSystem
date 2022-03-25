@@ -44,9 +44,9 @@ public class SignUpPage extends AppCompatActivity {
                 boolean switchState = sign_identity.isChecked();
                 String identify;
                 if (switchState){
-                    identify = "Instructor";
+                    identify = "employee";  /**修改*/
                 }else{
-                    identify = "Member";
+                    identify = "patient";  /**修改*/
                 }
                 UserModel userModel;
                 try {
@@ -59,7 +59,7 @@ public class SignUpPage extends AppCompatActivity {
                 if(verifyacc == false) {
                     boolean insert = database.addUser(userModel);
                     if (insert == true){
-                        Toast.makeText(SignUpPage.this,"registered complete",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpPage.this,"registered completed",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(SignUpPage.this, MainActivity.class);
                         startActivity(intent);
                     }else{

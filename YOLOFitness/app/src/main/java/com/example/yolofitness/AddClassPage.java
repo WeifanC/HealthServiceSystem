@@ -47,7 +47,7 @@ public class AddClassPage extends AppCompatActivity {
             @Override
            public void onClick(View v) {
                DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);
-               Toast.makeText(AddClassPage.this,"Both users and instructors  Account has been deleted",Toast.LENGTH_LONG).show();
+               Toast.makeText(AddClassPage.this,"Both patient and  employee Account has been deleted",Toast.LENGTH_LONG).show();   /**修改*/
 
 
            }
@@ -68,7 +68,7 @@ public class AddClassPage extends AppCompatActivity {
                     classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy","Monday","null","1","0",studentname);
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-                    Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddClassPage.this, "Error making appointment", Toast.LENGTH_SHORT).show();   /**修改*/
                     String[] studentname = new String[1];
                     studentname[0] = "";
                     classModel = new ClassModel(-1,"error","no detail","error","error","null","null","null","null",studentname);

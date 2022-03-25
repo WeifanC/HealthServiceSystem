@@ -34,7 +34,7 @@ public class modifycourse_page extends AppCompatActivity {
     private EditText et_time,et_cap;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private NumberPicker Hours = null;
-    String[] difficultyArray = {"Easy", "Moderate ", "Hard"};
+    String[] difficultyArray = {"scalping", "cleaning ", "Extrating"};            /**修改*/
     String[] dateArray = {"Monday", "Tuesday ", "Wednesday","Thursday","Friday","Saturday","Sunday"};
     private int classid;
     private String classdifficult;
@@ -167,7 +167,7 @@ public class modifycourse_page extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 classhours=newVal+"";
-                Toast.makeText(modifycourse_page.this, "This class is " + classhours + " hour long.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(modifycourse_page.this, "This appointment is " + classhours + " hour long.", Toast.LENGTH_SHORT).show();   /**修改*/
             }
         });
    }

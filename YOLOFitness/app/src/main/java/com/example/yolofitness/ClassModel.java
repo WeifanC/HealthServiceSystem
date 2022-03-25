@@ -10,26 +10,40 @@ public class ClassModel {
     private int id;
     private String name;
     private String description;
-    private String instructor;
+    private String employee;    /**修改*/
     private String date;
     private String time;
     private String hours;
     private String difficulty;
     private String capacity;
-    private String[] studentname;
+    private String[] patientname;   /**修改*/
 
 
-    public ClassModel(int id, String name, String description, String instructor, String difficulty, String date,String time, String hours, String capacity, String[] studentname) {
+    /** 需要修改部分
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param
+     * @param difficulty
+     * @param date
+     * @param time
+     * @param hours
+     * @param capacity
+     * @param
+     */
+
+    public ClassModel(int id, String name, String description, String employee, String difficulty, String date,String time, String hours, String capacity, String[] patientname) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.instructor = instructor;
+        this.employee = employee;      /**修改*/
         this.difficulty=difficulty;
         this.date=date;
         this.time = time;
         this.hours=hours;
         this.capacity = capacity;
-        this.studentname = studentname;
+        this.patientname = patientname;   /**修改*/
     }
 
 
@@ -38,7 +52,7 @@ public class ClassModel {
         return
                 "Class = " + name  +
                 ", description = " + description  +
-                ", instructor = " + instructor +
+                ", instructor = " + employee +
                 ", difficulty = " + difficulty  +
                 ", date = " + date +
                 ", time = " + time +
@@ -51,7 +65,7 @@ public class ClassModel {
      */
     public String getCapacity() {
         return capacity;
-    }
+    }    /**修改*/
 
     /**
      *  setting capacity
@@ -147,32 +161,32 @@ public class ClassModel {
      * @return
      */
     public String getInstructor() {
-        return instructor;
-    }
+        return employee;
+    }    /**修改*/
 
     /**
      * setinsturctor
      * @param instructor
      */
     public void setInstructor(String instructor) {
-        this.instructor = instructor;
-    }
+        this.employee = instructor;
+    }   /**修改*/
 
     /**
      * getStudentname
      * @return
      */
     public String[] getStudentname() {
-        return studentname;
-    }
+        return patientname;
+    }   /**修改*/
 
     /**
      * setStudentname
      * @param studentname
      */
     public void setStudentname(String[] studentname) {
-        this.studentname = studentname;
-    }
+        this.patientname = studentname;
+    }   /**修改*/
 
     /**
      * get time
