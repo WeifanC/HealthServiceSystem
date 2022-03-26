@@ -8,7 +8,7 @@
     tools:context=".memberpage">
 
     <ListView
-        android:id="@+id/lt_view_class"
+        android:id="@+id/lt_view_apps"
         android:layout_width="370dp"
         android:layout_height="433dp"
         android:layout_marginTop="40dp"
@@ -18,27 +18,28 @@
         app:layout_constraintTop_toBottomOf="@+id/member_viewclass" />
 
     <Button
-        android:id="@+id/member_searchbutton"
+        android:id="@+id/Paybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
-        android:text="Search"
+        android:text="Pay billing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toEndOf="@+id/member_searchbox"
+        app:layout_constraintStart_toEndOf="@+id/insurancenum"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/member_searchbox"
+        android:id="@+id/insurancenum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="56dp"
+        android:drawableLeft="@drawable/ic_account_icon"
         android:ems="10"
+        android:hint="insurance number"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,6 @@
         android:text="VIEW Registered appointment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/member_searchbox" />
+        app:layout_constraintTop_toBottomOf="@+id/insurancenum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,16 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.renderscript.*;
 import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    public EditText UserID, Password;
+    public EditText SSN;
     public Button logInbotton,signupbotton, forgetBotton;
     public Switch login_indentity;
-    public String id,password,identify;
+    public String ssn,identify;
     boolean switchState;
     DatabaseHelper database;
 
@@ -28,13 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UserID = (EditText)findViewById(R.id.User);
-        Password = (EditText)findViewById(R.id.password);
+        SSN = (EditText)findViewById(R.id.signin_SSN);
         login_indentity = (Switch)findViewById(R.id.sw_login);
         switchState = login_indentity.getShowText();
         logInbotton = (Button) findViewById(R.id.logIn);
         signupbotton =(Button) findViewById(R.id.signup);
-        forgetBotton = (Button) findViewById(R.id.forget);
         database = new DatabaseHelper(this);
 
         signupbotton.setOnClickListener(new View.OnClickListener() {
@@ -50,24 +47,28 @@ public class MainActivity extends AppCompatActivity {
         logInbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                id =UserID.getText().toString();
-                password = Password.getText().toString();
+                ssn = SSN.getText().toString();
                 switchState = login_indentity.isChecked();
                 if (switchState){
-                    identify = "Instructor";
+                    identify = "employee";
                 }else{
-                    identify = "Member";
+                    identify = "patient";
                 }
                 Intent intent;
                 //pass information to another activity
                 Bundle bundle = new Bundle();
-                boolean verify = database.Verify_password(id,password,identify);
-                if ((id.equals("admin")) && (password.equals("admin123"))) {
-                    intent = new Intent(MainActivity.this, AddClassPage.class);
+                boolean verify;
+                if (identify == "employee"){
+                    verify = database.Verify_identity(ssn,identify);
+                }else{
+                    verify = database.Verify_Account(ssn);
+                }
+                if ((ssn.equals("admin"))) {
+                    intent = new Intent(MainActivity.this, AddScheduletPage.class);
                     startActivity(intent);
                 }else if (verify == true){
                     Toast.makeText(MainActivity.this,"Login successfully",Toast.LENGTH_LONG).show();
-                    bundle.putString("user", id);
+                    bundle.putString("SSN",ssn);
                     bundle.putString("identify", identify);
                     intent = new Intent(MainActivity.this, Displaypage.class);
                     intent.putExtras(bundle);

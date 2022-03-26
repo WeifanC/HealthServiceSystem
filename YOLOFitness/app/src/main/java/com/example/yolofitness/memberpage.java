@@ -19,10 +19,10 @@ import java.util.Date;
 import java.util.List;
 
 public class memberpage extends AppCompatActivity {
-    public Button member_searchbutton,bt_member_viewclass;
-    public EditText member_searchbox;
-    public ListView lt_view_class;
-    private String membername;
+    public Button bt_pay, bt_member_viewApp;
+    public EditText et_insurance;
+    public ListView lt_view_apps;
+    private String ssn,patientname;
     DatabaseHelper database;
 
 
@@ -30,90 +30,87 @@ public class memberpage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memberview_page);
-        member_searchbutton = (Button) findViewById(R.id.member_searchbutton);
-        bt_member_viewclass = (Button) findViewById(R.id.member_viewclass);
-        member_searchbox = (EditText) findViewById(R.id.member_searchbox);
-        lt_view_class = (ListView) findViewById(R.id.lt_view_class);
+        bt_pay = (Button) findViewById(R.id.Paybutton);
+        bt_member_viewApp = (Button) findViewById(R.id.member_viewclass);
+        et_insurance = (EditText) findViewById(R.id.insurancenum);
+        lt_view_apps = (ListView) findViewById(R.id.lt_view_apps);
         database = new DatabaseHelper(this);
-        displayClassList(database);
+        displayAppsList(database);
         Bundle bundle = getIntent().getExtras();
-        membername = bundle.getString("user");
+        ssn = bundle.getString("SSN");
+        patientname = database.getName(ssn);
         Bundle finalBundle = bundle;
 
-        member_searchbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String classn = member_searchbox.getText().toString();
-                if (classn != null){
-                    List<ClassModel> search = database.search(classn);
-                    List<ClassModel> searchd = database.searchdate(classn);
-                    search.addAll(searchd);
-                    ArrayAdapter classarrayadapter = new ArrayAdapter<ClassModel>(memberpage.this, android.R.layout.simple_list_item_1, search);
-                    lt_view_class.setAdapter(classarrayadapter);
-                }else{
-                    Toast.makeText(memberpage.this, "N/A", Toast.LENGTH_SHORT).show();
-                    displayClassList(database);
-                }
 
-            }
-        });
-        bt_member_viewclass.setOnClickListener(new View.OnClickListener() {
+        bt_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String allorowned = bt_member_viewclass.getText().toString();
-                if (allorowned.equals("VIEW ENROLLED CLASS")){
-                    bt_member_viewclass.setText("VIEW ALL");
-                    List<ClassModel> enrolclass = getEnrolClassList(database,membername);
-                    ArrayAdapter classarrayadapter = new ArrayAdapter<ClassModel>(memberpage.this, android.R.layout.simple_list_item_1, enrolclass);
-                    lt_view_class.setAdapter(classarrayadapter);
+                String insurance = et_insurance.getText().toString();
+                if (database.Verify_Insurance(ssn,insurance)){
+                    Toast.makeText(memberpage.this, "Pay successful", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(memberpage.this, "Pay unsuccessful, Please go to checkout counter instead.", Toast.LENGTH_SHORT).show();
+                }
+                }
+        });
+        bt_member_viewApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String allorowned = bt_member_viewApp.getText().toString();
+                if (allorowned.equals("VIEW Registered appointment")){
+                    bt_member_viewApp.setText("VIEW ALL");
+                    List<Appointment> enrolApps = getEnrolAppsList(database,patientname);
+                    ArrayAdapter classarrayadapter = new ArrayAdapter<Appointment>(memberpage.this, android.R.layout.simple_list_item_1, enrolApps);
+                    lt_view_apps.setAdapter(classarrayadapter);
                 }else if (allorowned.equals("VIEW ALL")){
-                    bt_member_viewclass.setText("VIEW ENROLLED CLASS");
-                    displayClassList(database);
+                    bt_member_viewApp.setText("VIEW Registered appointment");
+                    displayAppsList(database);
                 }
             }
         });
-        lt_view_class.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lt_view_apps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ClassModel clickedClass = (ClassModel) adapterView.getItemAtPosition(i);
-                List<ClassModel>enrolclass = getEnrolClassList(database,membername);
+                Appointment clickedApp = (Appointment) adapterView.getItemAtPosition(i);
+                List<Appointment>enrolApps = getEnrolAppsList(database,patientname);
 
-                if(timeconflict(database,enrolclass,clickedClass)){
-                    String[] memberlist = clickedClass.getStudentname();
+                if(timeconflict(database,enrolApps,clickedApp)){
+                    String currentpatient = clickedApp.getPatientname();
                     boolean x = false;
-                    for (int j =0; j<memberlist.length;j++){
-                        if (memberlist[j].equals(membername)){
+                    if (currentpatient.equals(patientname)){
                             x=true;
-                        }
                     }
+
                     if (x){
-                        finalBundle.putInt("classid",clickedClass.getId());
-                        finalBundle.putString("classname",clickedClass.getName());
-                        finalBundle.putString("classdes",clickedClass.getDescription());
-                        finalBundle.putString("diff",clickedClass.getDifficulty());
-                        finalBundle.putString("date",clickedClass.getDate());
-                        finalBundle.putString("time",clickedClass.getTime());
-                        finalBundle.putString("hours",clickedClass.getHours());
-                        finalBundle.putString("capacity",clickedClass.getCapacity());
-                        finalBundle.putStringArray("membername",clickedClass.getStudentname());
+                        finalBundle.putInt("appid",clickedApp.getAppid());
+                        finalBundle.putString("patient",patientname);
+                        finalBundle.putString("curpatient",currentpatient);
+                        finalBundle.putString("status",clickedApp.getStatus());
+                        finalBundle.putString("branch",clickedApp.getBranch());
+                        finalBundle.putString("date",clickedApp.getDate());
+                        finalBundle.putString("time",clickedApp.getTime());
+                        finalBundle.putString("hours",clickedApp.getHours());
+                        finalBundle.putString("type",clickedApp.getType());
+                        finalBundle.putString("dentist",clickedApp.getDentistid());
                         finalBundle.putBoolean("enrolled",true);
                         Intent intent = new Intent(memberpage.this, EnrolPage.class);
                         intent.putExtras(finalBundle);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(memberpage.this,"This Class has time conflict with enrolled classes",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(memberpage.this,"This appointment has time conflict with enrolled appointment",Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
-                    finalBundle.putInt("classid",clickedClass.getId());
-                    finalBundle.putString("classname",clickedClass.getName());
-                    finalBundle.putString("classdes",clickedClass.getDescription());
-                    finalBundle.putString("diff",clickedClass.getDifficulty());
-                    finalBundle.putString("date",clickedClass.getDate());
-                    finalBundle.putString("time",clickedClass.getTime());
-                    finalBundle.putString("hours",clickedClass.getHours());
-                    finalBundle.putString("capacity",clickedClass.getCapacity());
-                    finalBundle.putStringArray("membername",clickedClass.getStudentname());
+                    finalBundle.putInt("appid",clickedApp.getAppid());
+                    finalBundle.putString("patient",patientname);
+                    finalBundle.putString("curpatient",clickedApp.getPatientname());
+                    finalBundle.putString("status",clickedApp.getStatus());
+                    finalBundle.putString("branch",clickedApp.getBranch());
+                    finalBundle.putString("date",clickedApp.getDate());
+                    finalBundle.putString("time",clickedApp.getTime());
+                    finalBundle.putString("hours",clickedApp.getHours());
+                    finalBundle.putString("type",clickedApp.getType());
+                    finalBundle.putString("dentist",clickedApp.getDentistid());
                     finalBundle.putBoolean("enrolled",false);
                     Intent intent = new Intent(memberpage.this, EnrolPage.class);
                     intent.putExtras(finalBundle);
@@ -123,18 +120,18 @@ public class memberpage extends AppCompatActivity {
             }
         });
     }
-    private void displayClassList(DatabaseHelper databaseHelper) {
-        List<ClassModel> allclass = databaseHelper.getAll();
-        ArrayAdapter classarrayadapter = new ArrayAdapter<ClassModel>(memberpage.this, android.R.layout.simple_list_item_1, allclass);
-        lt_view_class.setAdapter(classarrayadapter);
+    private void displayAppsList(DatabaseHelper databaseHelper) {
+        List<Appointment> allapps = databaseHelper.getAll();
+        ArrayAdapter classarrayadapter = new ArrayAdapter<Appointment>(memberpage.this, android.R.layout.simple_list_item_1, allapps);
+        lt_view_apps.setAdapter(classarrayadapter);
     }
 
-    private List<ClassModel> getEnrolClassList(DatabaseHelper databaseHelper,String username) {
-        List<ClassModel> enrolclass = databaseHelper.enroledClass(username);
+    private List<Appointment> getEnrolAppsList(DatabaseHelper databaseHelper, String patientname) {
+        List<Appointment> enrolapps = databaseHelper.getRegisterApp(patientname);
         //ArrayAdapter classarrayadapter = new ArrayAdapter<ClassModel>(memberpage.this, android.R.layout.simple_list_item_1, enrolclass);
-        return enrolclass;
+        return enrolapps;
     }
-    private boolean timeconflict(DatabaseHelper databaseHelper,List<ClassModel> EnrolClassList, ClassModel classModel){
+    private boolean timeconflict(DatabaseHelper databaseHelper,List<Appointment> EnrolClassList, Appointment classModel){
         for (int i = 0; i < EnrolClassList.size();i++){
             String exdate = EnrolClassList.get(i).getDate();
             String curdate = classModel.getDate();

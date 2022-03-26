@@ -4,46 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background5"
     tools:context=".SignUpPage">
 
+
     <EditText
-        android:id="@+id/signuppage_user"
+        android:id="@+id/signuppage_SSN"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="132dp"
         android:drawableLeft="@drawable/ic_account_icon"
         android:ems="10"
-        android:hint="@string/account"
+        android:hint="SSN"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signuppage_address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/signuppage_password"
+        android:id="@+id/signuppage_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_password_icon"
+        android:layout_marginTop="48dp"
+        android:drawableLeft="@drawable/ic_account_icon"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/signuppage_SSN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppage_age"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="324dp"
+        android:drawableLeft="@drawable/ic_account_icon"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/signuppage_gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/signuppage_address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="36dp"
+        android:drawableLeft="@drawable/ic_account_icon"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/signuppage_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppage_gender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="400dp"
+        android:drawableLeft="@drawable/ic_account_icon"
+        android:ems="10"
+        android:hint="Gender"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppage_birth"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/ic_account_icon"
+        android:ems="10"
+        android:hint="Date of birth"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuppage_user"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/signuppage_gender"
+        app:layout_constraintVertical_bias="0.099" />
 
+    <EditText
+        android:id="@+id/signuppage_phonenumber"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/ic_account_icon"
+        android:ems="10"
+        android:hint="Insurance number"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signuppage_birth"
+        app:layout_constraintVertical_bias="0.101" />
 
     <Button
         android:id="@+id/confirmbotton"
@@ -70,22 +161,21 @@
         app:layout_constraintBottom_toTopOf="@+id/confirmbotton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuppage_password"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintTop_toBottomOf="@+id/signuppage_phonenumber" />
 
     <!--    <EditText-->
-<!--        android:id="@+id/name"-->
-<!--        android:layout_width="250dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Name"-->
-<!--        android:drawableLeft="@drawable/ic_name_icon"-->
-<!--        android:inputType="textPersonName"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.496"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/signuppage_password" />-->
+    <!--        android:id="@+id/name"-->
+    <!--        android:layout_width="250dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="Name"-->
+    <!--        android:drawableLeft="@drawable/ic_name_icon"-->
+    <!--        android:inputType="textPersonName"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.496"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/signuppage_password" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

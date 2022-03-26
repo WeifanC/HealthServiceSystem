@@ -9,14 +9,26 @@
 
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_type"
         android:layout_width="220dp"
         android:layout_height="54dp"
-        android:layout_marginTop="100dp"
-        android:entries="@array/gradeArray"
+        android:layout_marginTop="116dp"
+        android:entries="@array/typeArray"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_Status"
+        android:layout_width="220dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:entries="@array/statusArray"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,23 +92,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_capacity"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_dentist" />
 
     <Button
         android:id="@+id/modify_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel appointent "
+        android:text="Cancel "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toEndOf="@+id/modify_confirm"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cap"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintTop_toBottomOf="@+id/et_dentist"
+        app:layout_constraintVertical_bias="0.477" />
 
-    <EditText
-        android:id="@+id/et_capacity"
+    <TextView
+        android:id="@+id/tx_Patientname"
+        android:layout_width="120dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="84dp"
+        android:text="Patient:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_Branch"
+        app:layout_constraintVertical_bias="0.146" />
+
+    <TextView
+        android:id="@+id/tx_dentist"
+        android:layout_width="120dp"
+        android:layout_height="36dp"
+        android:text="Dentist:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_Patientname"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <TextView
+        android:id="@+id/tx_Branch"
+        android:layout_width="120dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="40dp"
+        android:text="Branch:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modify_h" />
+
+    <TextView
+        android:id="@+id/et_patientname"
         android:layout_width="128dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
@@ -104,28 +155,42 @@
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tx_cap"
-        app:layout_constraintTop_toBottomOf="@+id/modify_h"
-        app:layout_constraintVertical_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/tx_Patientname"
+        app:layout_constraintTop_toBottomOf="@+id/et_branch"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/tx_cap"
-        android:layout_width="120dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="40dp"
-        android:text="age"
+        android:id="@+id/et_dentist"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tx_Patientname"
+        app:layout_constraintTop_toBottomOf="@+id/et_patientname"
+        app:layout_constraintVertical_bias="0.111"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/et_branch"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tx_Patientname"
         app:layout_constraintTop_toBottomOf="@+id/modify_h"
-        app:layout_constraintVertical_bias="0.09" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/et_starttime"
@@ -153,15 +218,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_date" />
-
-    <Button
-        android:id="@+id/bt_checkmember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="check Patient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modify_cancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

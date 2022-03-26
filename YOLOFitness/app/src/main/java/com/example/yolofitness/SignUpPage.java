@@ -9,14 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class SignUpPage extends AppCompatActivity {
-    public EditText AccountNum, signupPassword;
+    public EditText signUpName,signUpSSN,signUpAddress,signUpAge,signUpGender,signUpBirth, signUpInsurance;
     public Switch sign_identity;
 
 
@@ -33,8 +31,13 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
-        AccountNum = (EditText)findViewById(R.id.signuppage_user);
-        signupPassword = (EditText)findViewById(R.id.signuppage_password);
+        signUpName = (EditText)findViewById(R.id.signuppage_name);
+        signUpSSN = (EditText)findViewById(R.id.signuppage_SSN);
+        signUpAddress = (EditText)findViewById(R.id.signuppage_address);
+        signUpAge = (EditText)findViewById(R.id.signuppage_age);
+        signUpGender = (EditText)findViewById(R.id.signuppage_gender);
+        signUpBirth = (EditText)findViewById(R.id.signuppage_birth);
+        signUpInsurance = (EditText)findViewById(R.id.signuppage_phonenumber);
         sign_identity = (Switch) findViewById(R.id.sw_signup);
         signupConfirm = (Button) findViewById(R.id.confirmbotton);
         database = new DatabaseHelper(this);
@@ -44,18 +47,18 @@ public class SignUpPage extends AppCompatActivity {
                 boolean switchState = sign_identity.isChecked();
                 String identify;
                 if (switchState){
-                    identify = "employee";  /**修改*/
+                    identify = "employee";
                 }else{
-                    identify = "patient";  /**修改*/
+                    identify = "patient";
                 }
-                UserModel userModel;
+                UserInfo userModel;
                 try {
-                    userModel = new UserModel(-1, AccountNum.getText().toString(), signupPassword.getText().toString(),identify);
+                    userModel = new UserInfo(-1,signUpName.getText().toString(),signUpSSN.getText().toString(),signUpAddress.getText().toString(),signUpAge.getText().toString(),signUpGender.getText().toString(),signUpBirth.getText().toString(),signUpInsurance.getText().toString(),identify);
                 }catch (Exception e){
                     Toast.makeText(SignUpPage.this, "invalid input", Toast.LENGTH_SHORT).show();
-                    userModel = new UserModel(-1,"error","error","error");
+                    userModel = new UserInfo(-1,"error","error","error","error","error","error","error","error");
                 }
-                boolean verifyacc = database.Verify_Account(userModel.getUsername());
+                boolean verifyacc = database.Verify_Account(userModel.getSSN());
                 if(verifyacc == false) {
                     boolean insert = database.addUser(userModel);
                     if (insert == true){
@@ -66,7 +69,7 @@ public class SignUpPage extends AppCompatActivity {
                         Toast.makeText(SignUpPage.this,"registered failed",Toast.LENGTH_LONG).show();
                     }
                 }else {
-                    Toast.makeText((SignUpPage.this), "please try different account", Toast.LENGTH_SHORT).show();
+                    Toast.makeText((SignUpPage.this), "you already registered", Toast.LENGTH_SHORT).show();
                 }
 
             }

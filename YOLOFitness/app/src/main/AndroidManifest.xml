@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YOLOFitness">
         <activity
-            android:name=".instructor_page"
+            android:name=".Dentist_page"
             android:exported="false" />
         <activity
             android:name=".Displaypage"
@@ -19,7 +19,7 @@
             android:name=".SignUpPage"
             android:exported="false" />
         <activity
-            android:name=".AddClassPage"
+            android:name=".AddScheduletPage"
             android:exported="false" />
         <activity
             android:name=".modifycourse_page"

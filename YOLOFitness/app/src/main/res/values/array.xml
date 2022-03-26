@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="gradeArray">
-        <item>Easy</item>
-        <item>Moderate</item>
-        <item>Hard</item>
+    <string-array name="typeArray">
+        <item>Scalping</item>
+        <item>Cleaning</item>
+        <item>Extrating</item>
+    </string-array>
+    <string-array name="statusArray">
+        <item>Complete</item>
+        <item>Incomplete</item>
     </string-array>
     <string-array name="dateArray">
         <item>Monday</item>
