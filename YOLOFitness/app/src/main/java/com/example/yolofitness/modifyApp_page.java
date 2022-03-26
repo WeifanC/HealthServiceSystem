@@ -21,7 +21,7 @@ import android.app.DatePickerDialog;
 import android.widget.Toast;
 
 
-public class modifycourse_page extends AppCompatActivity {
+public class modifyApp_page extends AppCompatActivity {
     private Button Confirm,Cancel;
     DatabaseHelper databaseHelper;
     private static final String TAG = "TestDatePickerActivity";
@@ -59,7 +59,7 @@ public class modifycourse_page extends AppCompatActivity {
         A_time = bundle.getString("time");
         type = bundle.getString("type");
         int hours = Integer.parseInt(bundle.getString("hours"));
-        setContentView(R.layout.activity_modifycourse_page);
+        setContentView(R.layout.activity_modifyapp_page);
 //        mDatePicker = (TextView) findViewById(R.id.modify_date);
 //        mDatePicker.setText(classdate);
 
@@ -144,7 +144,7 @@ public class modifycourse_page extends AppCompatActivity {
                 try {
                     time = sdf.parse(A_time);
                 } catch (ParseException e) {
-                    Toast.makeText(modifycourse_page.this, "Class time incorrect formula", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(modifyApp_page.this, "Class time incorrect formula", Toast.LENGTH_SHORT).show();
                 }
                 if (time != null){
                     if (A_hours == null){
@@ -153,11 +153,11 @@ public class modifycourse_page extends AppCompatActivity {
                     databaseHelper.UpdateApp(appid,branch,status,dentistid,A_date,A_time,A_hours,type);
                     Bundle finalBundle = new Bundle();;
                     finalBundle.putString("dentist",dentistid);
-                    Intent intent = new Intent(modifycourse_page.this, Dentist_page.class);
+                    Intent intent = new Intent(modifyApp_page.this, Dentist_page.class);
                     intent.putExtras(finalBundle);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(modifycourse_page.this,"Incorrect formula",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(modifyApp_page.this,"Incorrect formula",Toast.LENGTH_SHORT).show();
                 }
                 }
 
@@ -171,9 +171,9 @@ public class modifycourse_page extends AppCompatActivity {
                 databaseHelper.cancelAppointment(appid);
                 Bundle finalBundle = new Bundle();;
                 finalBundle.putString("dentist",dentistid);
-                Intent intent = new Intent(modifycourse_page.this, Dentist_page.class);
+                Intent intent = new Intent(modifyApp_page.this, Dentist_page.class);
                 intent.putExtras(finalBundle);
-                Toast.makeText(modifycourse_page.this, "This appointment is cancelled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(modifyApp_page.this, "This appointment is cancelled", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -184,7 +184,7 @@ public class modifycourse_page extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 A_hours=newVal+"";
-                Toast.makeText(modifycourse_page.this, "This appointment is " + A_hours + " hour long.", Toast.LENGTH_SHORT).show();   /**修改*/
+                Toast.makeText(modifyApp_page.this, "This appointment is " + A_hours + " hour long.", Toast.LENGTH_SHORT).show();   /**修改*/
             }
         });
 

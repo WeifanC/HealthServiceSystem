@@ -64,10 +64,8 @@ public class Dentist_page extends AppCompatActivity {
                     appointment = new Appointment(-1, "null","null","null",dentistname,"Monday","null","1","null");
                     Toast.makeText(Dentist_page.this, appointment.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
-                    Toast.makeText(Dentist_page.this, "Error making appointment", Toast.LENGTH_SHORT).show();   /**修改*/
-                    String[] studentname = new String[1];
-                    studentname[0] = "";
-                    appointment = new Appointment(-1,"error","error","error","error","error","error","error","error");
+                    Toast.makeText(Dentist_page.this, "Error making appointment", Toast.LENGTH_SHORT).show();
+                    appointment = new Appointment(-1,"error","error","error","error","error","error","1","error");
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(Dentist_page.this);
@@ -100,7 +98,7 @@ public class Dentist_page extends AppCompatActivity {
                     finalBundle.putString("time",clickedApp.getTime());
                     finalBundle.putString("hours",clickedApp.getHours());
                     finalBundle.putString("type",clickedApp.getType());
-                    Intent intent = new Intent(Dentist_page.this, modifycourse_page.class);
+                    Intent intent = new Intent(Dentist_page.this, modifyApp_page.class);
                     intent.putExtras(finalBundle);
                     startActivity(intent);
                 }else{

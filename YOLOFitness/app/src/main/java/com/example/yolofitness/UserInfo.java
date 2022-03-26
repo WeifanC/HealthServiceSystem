@@ -34,6 +34,7 @@ public class UserInfo {
                 ", gender='" + gender + '\'' +
                 ", birth='" + birth + '\'' +
                 ", Insurance number='" + insurance + '\'' +
+                ", Identity= '" + identity + '\''+
                 '}';
     }
 

@@ -22,13 +22,10 @@
             android:name=".AddScheduletPage"
             android:exported="false" />
         <activity
-            android:name=".modifycourse_page"
+            android:name=".modifyApp_page"
             android:exported="false" />
         <activity
             android:name=".memberpage"
-            android:exported="false" />
-        <activity
-            android:name=".checkmember"
             android:exported="false" />
         <activity
             android:name=".EnrolPage"
