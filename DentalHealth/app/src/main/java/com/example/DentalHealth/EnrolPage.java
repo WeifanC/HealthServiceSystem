@@ -33,6 +33,7 @@ public class EnrolPage extends AppCompatActivity {
         int hours = Integer.parseInt(bundle.getString("hours"));
         String dentist = bundle.getString("dentist");
         String branch = bundle.getString("branch");
+        String price = bundle.getString("price");
         databaseHelper = new DatabaseHelper(this);
 
         setContentView(R.layout.activity_memberenrolpage);
@@ -43,7 +44,8 @@ public class EnrolPage extends AppCompatActivity {
         courseinfo.setText("Patient Name: "+ curpatient +"\n" + "Branch location: " + branch + "\n" +
                 "Appointment Type: " + type + "\n" + "Appointment date: "+ date + "\n" +
                 "Appointment time: " + time + "\n" +
-                "Appointment Hour: " + hours + "\n" + "Dentist: " + dentist +"\n"+ "Status: "+ status);
+                "Appointment Hour: " + hours + "\n" + "Dentist: " + dentist +"\n"+ "Price: " + price +"\n"+
+                "Status: "+ status);
         boolean enrolled = bundle.getBoolean("enrolled");
         if (enrolled){
             confirm.setText("UNENROL");

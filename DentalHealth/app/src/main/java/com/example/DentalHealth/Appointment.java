@@ -12,6 +12,7 @@ public class Appointment {
     private String date;
     private String time;
     private String hours;
+    private String price;
     private String type;
 
     /**
@@ -26,7 +27,7 @@ public class Appointment {
      * @param hours
      */
 
-    public Appointment(int appid, String patientname,String branch, String status, String dentistid,String date,String time, String hours,String type) {
+    public Appointment(int appid, String patientname,String branch, String status, String dentistid,String date,String time, String hours,String type,String price) {
         this.appid = appid;
         this.patientname = patientname;
         this.branch = branch;
@@ -36,6 +37,7 @@ public class Appointment {
         this.date=date;
         this.time = time;
         this.hours=hours;
+        this.price = price;
     }
 
     @Override
@@ -49,8 +51,10 @@ public class Appointment {
                 ", time='" + time + '\'' +
                 ", hours='" + hours + '\'' +
                 ", type='" + type + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
+
 
     /**
      * getting all the info
@@ -126,5 +130,13 @@ public class Appointment {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

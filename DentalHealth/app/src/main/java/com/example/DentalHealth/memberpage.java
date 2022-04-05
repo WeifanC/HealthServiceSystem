@@ -53,9 +53,15 @@ public class memberpage extends AppCompatActivity {
             public void onClick(View view) {
                 String insurance = et_insurance.getText().toString();
                 if (database.Verify_Insurance(ssn,insurance)){
-                    Toast.makeText(memberpage.this, "Pay successful", Toast.LENGTH_SHORT).show();
+                    List<Appointment> enrolApps = getEnrolAppsList(database,patientname);
+                    double price,totalprice = 0;
+                    for (int i = 0; i<enrolApps.size();i++){
+                         price = Double.parseDouble(enrolApps.get(i).getPrice());
+                        totalprice = totalprice + price;
+                    }
+                    Toast.makeText(memberpage.this, "Pay successful,Total amount is "+totalprice, Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(memberpage.this, "Pay unsuccessful, Please go to checkout counter instead.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(memberpage.this, "Pay unsuccessful, Insurance number wrong.", Toast.LENGTH_SHORT).show();
                 }
                 }
         });
@@ -104,6 +110,7 @@ public class memberpage extends AppCompatActivity {
                         finalBundle.putString("hours",clickedApp.getHours());
                         finalBundle.putString("type",clickedApp.getType());
                         finalBundle.putString("dentist",clickedApp.getDentistid());
+                        finalBundle.putString("price",clickedApp.getPrice());
                         finalBundle.putBoolean("enrolled",true);
                         Intent intent = new Intent(memberpage.this, EnrolPage.class);
                         intent.putExtras(finalBundle);
@@ -123,6 +130,7 @@ public class memberpage extends AppCompatActivity {
                     finalBundle.putString("hours",clickedApp.getHours());
                     finalBundle.putString("type",clickedApp.getType());
                     finalBundle.putString("dentist",clickedApp.getDentistid());
+                    finalBundle.putString("price",clickedApp.getPrice());
                     finalBundle.putBoolean("enrolled",false);
                     Intent intent = new Intent(memberpage.this, EnrolPage.class);
                     intent.putExtras(finalBundle);

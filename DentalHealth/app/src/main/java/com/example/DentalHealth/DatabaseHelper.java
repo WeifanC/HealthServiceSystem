@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TIME = "TIME";
     public static final String COLUMN_HOUR = "HOUR";
     public static final String COLUMN_TYPE = "TYPE";
+    public static final String COLUMN_PRICE = "PRICE";
 
     public static final String COLUMN_ID2 = "ID2";
     public static final String COLUMN_NAME = "NAME";
@@ -47,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqldb) {
-        String classtable = "CREATE TABLE " + APP_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PATIENT + " TEXT, " + COLUMN_BRANCH + " TEXT, " + COLUMN_STATUS + " TEXT, " + COLUMN_DENTIST + " TEXT, " + COLUMN_DATE + " TEXT, " + COLUMN_TIME + " TEXT, " + COLUMN_HOUR + " TEXT, " + COLUMN_TYPE + " TEXT)";
+        String classtable = "CREATE TABLE " + APP_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PATIENT + " TEXT, " + COLUMN_BRANCH + " TEXT, " + COLUMN_STATUS + " TEXT, " + COLUMN_DENTIST + " TEXT, " + COLUMN_DATE + " TEXT, " + COLUMN_TIME + " TEXT, " + COLUMN_HOUR + " TEXT, " + COLUMN_TYPE + " TEXT, "+ COLUMN_PRICE + " TEXT)";
         String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_SSN + " TEXT, " + COLUMN_ADDRESS + " TEXT, " + COLUMN_GENDER + " TEXT, " + COLUMN_AGE + " TEXT, " + COLUMN_BIRTH + " TEXT, " + COLUMN_INSURANCE + " TEXT, " + COLUMN_IDENTITY + " TEXT)";
         sqldb.execSQL(usertable);
         sqldb.execSQL(classtable);
@@ -80,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cvalue.put(COLUMN_TIME, appointment.getTime());
         cvalue.put(COLUMN_HOUR, appointment.getHours());
         cvalue.put(COLUMN_TYPE, appointment.getType());
+        cvalue.put(COLUMN_PRICE, appointment.getPrice());
 
         long insert = sqldb.insert(APP_TABLE, null, cvalue);
         return insert != -1;
@@ -168,8 +170,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String apptime = cursor.getString(6);
                 String apphours = cursor.getString(7);
                 String apptype = cursor.getString(8);
+                String appPrice = cursor.getString(9);
 
-                Appointment newapp = new Appointment(APPID, patientname, branch, status, dentistname, appdate, apptime, apphours, apptype);
+                Appointment newapp = new Appointment(APPID, patientname, branch, status, dentistname, appdate, apptime, apphours, apptype,appPrice);
                 allList.add(newapp);
 
             } while (cursor.moveToNext());
@@ -230,7 +233,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String apptime = oc.getString(6);
                 String apphours = oc.getString(7);
                 String apptype = oc.getString(8);
-                Appointment newapp = new Appointment(APPID, patientname, branch, status, dentistname, appdate, apptime, apphours, apptype);
+                String appPrice = oc.getString(9);
+                Appointment newapp = new Appointment(APPID, patientname, branch, status, dentistname, appdate, apptime, apphours, apptype,appPrice);
                 registerApps.add(newapp);
             } while (oc.moveToNext());
         } else {
@@ -350,11 +354,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param type
      * @return null
      */
-    public void UpdateApp(int appid, String branch, String status, String dentistid, String date, String time, String hours, String type) {
+    public void UpdateApp(int appid, String branch, String status, String dentistid, String date, String time, String hours, String type, String price ) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String query = "UPDATE " + APP_TABLE + " SET " + COLUMN_BRANCH + " = '" + branch + "' , " + COLUMN_STATUS + " = '" + status + "' , " + COLUMN_DENTIST +
                 " = '" + dentistid + "' , " + COLUMN_DATE + " = '" + date + "' , " + COLUMN_TIME + " = '" + time + "' , " + COLUMN_HOUR
-                + " = '" + hours + "' , " + COLUMN_TYPE + " = '" + type + "' WHERE " + COLUMN_ID + "= '" + appid + "'";
+                + " = '" + hours + "' , " + COLUMN_TYPE + " = '" + type + "' , " + COLUMN_PRICE + " = '" + price + "' WHERE " + COLUMN_ID + "= '" + appid + "'";
         sqldb.execSQL(query);
     }
 

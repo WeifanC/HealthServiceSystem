@@ -26,7 +26,7 @@ public class modifyApp_page extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     private static final String TAG = "TestDatePickerActivity";
     private TextView texttime,textpn,et_pn,et_dentist;
-    private EditText et_time,et_branch;
+    private EditText et_time,et_branch,et_price;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private NumberPicker Hours = null;
     String[] statusArray = {"complete","incomplete"};
@@ -41,6 +41,7 @@ public class modifyApp_page extends AppCompatActivity {
     private String A_time;
     private String A_hours;
     private String type;
+    private String price;
 
     /**
      * onclick  to modify appointment
@@ -59,6 +60,7 @@ public class modifyApp_page extends AppCompatActivity {
         A_time = bundle.getString("time");
         type = bundle.getString("type");
         int hours = Integer.parseInt(bundle.getString("hours"));
+        price = bundle.getString("price");
         setContentView(R.layout.activity_modifyapp_page);
 
 
@@ -75,6 +77,8 @@ public class modifyApp_page extends AppCompatActivity {
         et_pn.setText(patientname);
         Confirm = (Button) findViewById(R.id.modify_confirm);
         Cancel = (Button) findViewById(R.id.modify_cancel);
+        et_price = findViewById(R.id.et_Price);
+        et_price.setText(price);
         databaseHelper = new DatabaseHelper(this);
 
 
@@ -137,6 +141,7 @@ public class modifyApp_page extends AppCompatActivity {
                 patientname = et_pn.getText().toString();
                 A_time = et_time.getText().toString();
                 branch = et_branch.getText().toString();
+                price = et_price.getText().toString();
 
                 Date time = null;
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
@@ -149,7 +154,7 @@ public class modifyApp_page extends AppCompatActivity {
                     if (A_hours == null){
                         A_hours = hours+"";
                     }
-                    databaseHelper.UpdateApp(appid,branch,status,dentistid,A_date,A_time,A_hours,type);
+                    databaseHelper.UpdateApp(appid,branch,status,dentistid,A_date,A_time,A_hours,type,price);
                     Bundle finalBundle = new Bundle();;
                     finalBundle.putString("dentist",dentistid);
                     Intent intent = new Intent(modifyApp_page.this, Dentist_page.class);
