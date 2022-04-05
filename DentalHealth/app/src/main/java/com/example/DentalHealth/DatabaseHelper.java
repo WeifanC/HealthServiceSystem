@@ -18,6 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String APP_TABLE = "APP_TABLE";
     public static final String USER_TABLE = "USER_TABLE";
+    public static final String REVIEW_TABLE = "REVIEW_TABLE";
+    public static final String BILL_TBALE = "BILL_TBALE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_PATIENT = "PATIENTNAME";
     public static final String COLUMN_BRANCH = "BRANCH";
@@ -30,6 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRICE = "PRICE";
 
     public static final String COLUMN_ID2 = "ID2";
+    public static final String COLUMN_REVIEWID = "COLUMN_REVIEWID";
+    public static final String COLUMN_BILLINGID = "COLUMN_BILLINGID";
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_SSN = "SSN";
     public static final String COLUMN_ADDRESS = "ADDRESS";
@@ -38,6 +42,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_BIRTH = "BIRTH";
     public static final String COLUMN_INSURANCE = "INSURANCE";
     public static final String COLUMN_IDENTITY = "IDENTITY";
+    public static final String COLUMN_COMMENT = "COLUMN_COMMENT";
+    public static final String COLUMN_PAYTYPE = "COLUMN_PAYTYPE";
+    private static final String COLUMN_TOTALPRICE = "COLUMN_TOTALPRICE";
+    private static final String COLUMN_INVOICE = "COLUMN_INVOICE";
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -50,6 +58,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqldb) {
         String classtable = "CREATE TABLE " + APP_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PATIENT + " TEXT, " + COLUMN_BRANCH + " TEXT, " + COLUMN_STATUS + " TEXT, " + COLUMN_DENTIST + " TEXT, " + COLUMN_DATE + " TEXT, " + COLUMN_TIME + " TEXT, " + COLUMN_HOUR + " TEXT, " + COLUMN_TYPE + " TEXT, "+ COLUMN_PRICE + " TEXT)";
         String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_SSN + " TEXT, " + COLUMN_ADDRESS + " TEXT, " + COLUMN_GENDER + " TEXT, " + COLUMN_AGE + " TEXT, " + COLUMN_BIRTH + " TEXT, " + COLUMN_INSURANCE + " TEXT, " + COLUMN_IDENTITY + " TEXT)";
+        String reviewtable = "CREATE TABLE " + REVIEW_TABLE + " (" + COLUMN_REVIEWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PATIENT + " TEXT, " + COLUMN_ID2 + " TEXT, " + COLUMN_COMMENT + " TEXT)";
+        String billingtable = "CREATE TABLE " + BILL_TBALE + "(" + COLUMN_BILLINGID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_PATIENT + " TEXT, " + COLUMN_INSURANCE + " TEXT, " + COLUMN_PAYTYPE + " TEXT, " + COLUMN_TOTALPRICE + " TEXT, " + COLUMN_INVOICE + " TEXT, " + COLUMN_ID +  " TEXT)";
+
+//        sqldb.execSQL(reviewtable);
+//        sqldb.execSQL(billingtable);
         sqldb.execSQL(usertable);
         sqldb.execSQL(classtable);
     }
