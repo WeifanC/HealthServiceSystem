@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.DentalHealth">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.YOLOFitness">
+        <activity
+            android:name="com.example.DentalHealth.Dentist_page"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.Displaypage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.SignUpPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.AddScheduletPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.modifyApp_page"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.memberpage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.EnrolPage"
+            android:exported="false" />
+        <activity
+            android:name="com.example.DentalHealth.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
